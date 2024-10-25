@@ -4,14 +4,6 @@ import streamlit as st
 
 # Load model yang telah disimpan
 model = pickle.load(open('penyakit_jantung.sav', 'rb'))
-# Widget untuk mengunggah file model
-uploaded_file = st.file_uploader("Upload file model (.sav)", type="sav")
-if uploaded_file is not None:
-    # Jika file berhasil diunggah, muat modelnya
-    model = pickle.load(open('penyakit_jantung.sav', 'rb'))
-    st.write("Model berhasil dimuat.")
-else:
-    st.write("Silakan unggah file model .sav Anda untuk memulai prediksi.")
 
 # Judul web
 st.title('Prediksi Penyakit Jantung')
