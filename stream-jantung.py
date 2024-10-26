@@ -4,7 +4,7 @@ import streamlit as st
 import os
 
 # Load model yang telah disimpan
-model_path = os.path.join(os.path.dirname(__file__), 'penyakit_jantung.sav')
+model_path = '/path/to/penyakit_jantung.sav'  # Gantilah dengan path absolut
 model = pickle.load(open(model_path, 'rb'))
 
 # Judul web
