@@ -1,18 +1,9 @@
 import pickle
 import numpy as np
 import streamlit as st
-import os
 
 # Load model yang telah disimpan
-try:
-    with open('penyakit_jantung.sav', 'rb') as model_file:
-        model = pickle.load(model_file)
-except FileNotFoundError:
-    st.error("Model tidak ditemukan. Pastikan file 'penyakit_jantung.sav' ada di direktori yang benar.")
-    st.stop()
-except Exception as e:
-    st.error(f"Terjadi kesalahan saat memuat model: {e}")
-    st.stop()
+model = pickle.load(open('penyakit_jantung.sav', 'rb'))
 
 # Judul web
 st.title('Prediksi Penyakit Jantung')
@@ -86,5 +77,4 @@ if st.button('Prediksi Penyakit Jantung'):
 
     except ValueError:
         st.error("Masukkan semua nilai dengan benar dalam format numerik.")
-    except Exception as e:
-        st.error(f"Terjadi kesalahan saat melakukan prediksi: {e}")
+
