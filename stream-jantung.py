@@ -1,11 +1,9 @@
 import pickle
 import numpy as np
 import streamlit as st
-import os
 
 # Load model yang telah disimpan
-model_path = 'penyakit_jantung.sav'  # Gantilah dengan path absolut yang sesuai
-model = pickle.load(open(model_path, 'rb'))
+model = pickle.load(open('penyakit_jantung.sav', 'rb'))
 
 # Judul web
 st.title('Prediksi Penyakit Jantung')
