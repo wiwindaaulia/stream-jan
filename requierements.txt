@@ -3,6 +3,5 @@ pandas
 streamlit
 pickle
 pip
-scikit-learn
 sklearn
 scikit-learn
