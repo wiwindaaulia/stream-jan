@@ -85,7 +85,7 @@ if st.button('Prediksi Penyakit Jantung'):
         # Menampilkan hasil
         st.success(heart_diagnosis)
 
-     except ValueError:
+    except ValueError:
             st.error("Masukkan semua nilai dengan benar dalam format numerik.")
     else:
         st.error("Model gagal dimuat. Pastikan file model tersedia dan kompatibel.")
