@@ -2,16 +2,18 @@ import pickle
 import numpy as np
 import streamlit as st
 
-
 # Load model yang telah disimpan
 try:
+    print("Mencoba memuat model...")
     model = pickle.load(open('penyakit_jantung.sav', 'rb'))
+    print("Model berhasil dimuat.")
 except FileNotFoundError:
-    print("File penyakit_jantung.sav tidak ditemukan.")
+    print("Error: File penyakit_jantung.sav tidak ditemukan.")
 except ModuleNotFoundError as e:
-    print(f"Modul hilang: {e}")
+    print(f"Error: Modul yang dibutuhkan hilang - {e}")
 except Exception as e:
     print(f"Error lain: {e}")
+
 
 # Judul web
 st.title('Prediksi Penyakit Jantung')
