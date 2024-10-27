@@ -5,3 +5,4 @@ pickle
 pip
 sklearn
 scikit-learn
+joblib
