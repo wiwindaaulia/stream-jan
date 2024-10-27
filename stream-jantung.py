@@ -9,11 +9,13 @@ try:
     print("Model berhasil dimuat.")
 except FileNotFoundError:
     print("Error: File penyakit_jantung.sav tidak ditemukan.")
+    model = None
 except ModuleNotFoundError as e:
     print(f"Error: Modul yang dibutuhkan hilang - {e}")
+    model = None
 except Exception as e:
     print(f"Error lain: {e}")
-
+    model = None
 
 # Judul web
 st.title('Prediksi Penyakit Jantung')
@@ -65,28 +67,29 @@ heart_diagnosis = ''
 
 # Tombol untuk melakukan prediksi
 if st.button('Prediksi Penyakit Jantung'):
-    try:
-        # Mengonversi input ke tipe float
-        input_data = [
-            float(age), float(sex), float(cp), float(trestbps), float(chol), 
-            float(fbs), float(restecg), float(thalach), float(exang), 
-            float(oldpeak), float(slope), float(ca), float(thal)
-        ]
+    # Cek apakah model sudah berhasil dimuat
+    if model is not None:
+        try:
+            # Mengonversi input ke tipe float
+            input_data = [
+                float(age), float(sex), float(cp), float(trestbps), float(chol), 
+                float(fbs), float(restecg), float(thalach), float(exang), 
+                float(oldpeak), float(slope), float(ca), float(thal)
+            ]
 
-        # Melakukan prediksi
-        heart_prediction = model.predict([input_data])
+            # Melakukan prediksi
+            heart_prediction = model.predict([input_data])
 
-        # Menentukan hasil prediksi
-        if heart_prediction[0] == 0:
-            heart_diagnosis = 'Pasien Tidak Terkena Penyakit Jantung'
-        else:
-            heart_diagnosis = 'Pasien Terkena Penyakit Jantung'
+            # Menentukan hasil prediksi
+            if heart_prediction[0] == 0:
+                heart_diagnosis = 'Pasien Tidak Terkena Penyakit Jantung'
+            else:
+                heart_diagnosis = 'Pasien Terkena Penyakit Jantung'
 
-        # Menampilkan hasil
-        st.success(heart_diagnosis)
+            # Menampilkan hasil
+            st.success(heart_diagnosis)
 
-    except ValueError:
+        except ValueError:
             st.error("Masukkan semua nilai dengan benar dalam format numerik.")
     else:
         st.error("Model gagal dimuat. Pastikan file model tersedia dan kompatibel.")
-
